@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Agreement</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --success-color: #4CAF50;
+            --danger-color: #d32f2f;
+            --dark-bg: #121212;
+            --container-bg: #1e1e1e;
+            --content-bg: #252525;
+            --text-color: #ffffff;
+            --scrollbar-thumb: #3498db;
+            --scrollbar-track: #2d2d2d;
+            --accent-border: 4px solid var(--primary-color);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            background-color: var(--container-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            max-width: 850px;
+            width: 90%;
+            margin: 20px;
+            border-top: var(--accent-border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .terms-content {
+            text-align: left;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            background-color: var(--content-bg);
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-color);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .terms-content p {
+            margin-bottom: 1.2rem;
+        }
+
+        .terms-content strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .terms-content ol {
+            padding-left: 1.5rem;
+        }
+
+        .terms-content li {
+            margin-bottom: 1rem;
+        }
+
+        .buttons {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 180px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .accept {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .accept:hover {
+            background-color: #3e8e41;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .dismiss {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .dismiss:hover {
+            background-color: #c62828;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .loader {
+            border: 3px solid rgba(243, 243, 243, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            animation: spin 1s linear infinite;
+            display: none;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Scrollbar styling */
+        .terms-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .terms-content::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+        }
+
+        .terms-content::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 4px;
+        }
+
+        .terms-content::-webkit-scrollbar-thumb:hover {
+            background: #2980b9;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            padding: 0.8rem;
+            background-color: rgba(52, 152, 219, 0.1);
+            border-radius: 6px;
+        }
+
+        #agreeCheckbox {
+            margin-right: 0.8rem;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checkbox-label {
+            font-size: 0.9rem;
+            color: #cccccc;
+        }
+
+        .checkbox-label a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .checkbox-label a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .terms-content {
+                padding: 1rem;
+            }
+            
+            button {
+                padding: 0.7rem 1.5rem;
+                min-width: 140px;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Animation for page load */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* Tooltip for disabled button */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+            font-weight: normal;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2><i class="fas fa-file-contract" style="margin-right: 10px;"></i>Terms & Agreement</h2>
+        
+        <div class="terms-content">
+            <p>By using this artificial intelligence service, you acknowledge and agree to the following terms and conditions:</p>
+            
+            <ol>
+                <li><strong>Nature of Service</strong><br>
+                The AI provides analytical tools, predictive models, and recommendations based on algorithms and available data. These outputs are generated automatically without human intervention and should not be construed as financial, legal, or professional advice.</li>
+                
+                <li><strong>No Guarantee of Accuracy</strong><br>
+                While we strive for accuracy, the AI does not guarantee the completeness, reliability, or timeliness of any information provided. Market conditions, data quality, and other factors may affect the accuracy of analyses and predictions.</li>
+                
+                <li><strong>User Responsibility</strong><br>
+                You are solely responsible for all decisions made using this service. The AI cannot be held liable for any actions taken by users, whether favorable or detrimental. All investment, trading, or business decisions remain your exclusive responsibility.</li>
+                
+                <li><strong>No Liability</strong><br>
+                Under no circumstances shall the AI service, its developers, or affiliated entities be liable for any direct, indirect, incidental, special, or consequential damages resulting from the use of or inability to use the service.</li>
+                
+                <li><strong>Professional Advice</strong><br>
+                The service is not a substitute for professional advice from qualified financial, legal, or other professionals. We strongly recommend consulting with appropriate experts before making significant decisions.</li>
+                
+                <li><strong>Data Limitations</strong><br>
+                The AI's performance is dependent on the quality and quantity of available data. Gaps in data, unexpected market events, or other factors may lead to imperfect analyses.</li>
+                
+                <li><strong>No Endorsement</strong><br>
+                Any third-party services, products, or companies mentioned by the AI are for informational purposes only and do not constitute an endorsement or recommendation.</li>
+                
+                <li><strong>Changes to Terms</strong><br>
+                We reserve the right to modify these terms at any time. Continued use of the service constitutes acceptance of any revised terms.</li>
+                
+                <li><strong>Acceptance</strong><br>
+                By proceeding, you confirm that you have read, understood, and agreed to these terms in their entirety. If you do not agree with any part of these terms, you should not use this service.</li>
+            </ol>
+        </div>
+
+        <div class="checkbox-container">
+            <input type="checkbox" id="agreeCheckbox" required>
+            <label for="agreeCheckbox" class="checkbox-label">
+                I have read and agree to the <a href="#" onclick="event.preventDefault(); highlightTerms()">Terms & Conditions</a> and <a href="#">Privacy Policy</a>
+            </label>
+        </div>
+
+        <div class="buttons">
+            <div class="tooltip">
+                <button class="accept" onclick="proceedToSignup()" id="signupButton" disabled>
+                    Accept & Continue
+                    <span class="loader" id="loader"></span>
+                </button>
+                <span class="tooltiptext">Please read and agree to the terms to continue</span>
+            </div>
+            <button class="dismiss" onclick="exitPage()">Decline</button>
+        </div>
+    </div>
+
+    <script>
+        // Enable accept button only when checkbox is checked
+        document.getElementById('agreeCheckbox').addEventListener('change', function() {
+            document.getElementById('signupButton').disabled = !this.checked;
+        });
+
+        function proceedToSignup() {
+            var button = document.getElementById("signupButton");
+            var loader = document.getElementById("loader");
+            
+            if (!document.getElementById('agreeCheckbox').checked) {
+                return;
+            }
+            
+            button.disabled = true;
+            loader.style.display = "inline-block";
+            
+            // Add a slight delay to show the loading animation
+            setTimeout(() => {
+                window.location.href = "businessai_chat.html";
+                button.disabled = false;
+                loader.style.display = "none";
+            }, 1500);
+        }
+
+        function exitPage() {
+            // Confirm before exiting
+            if (confirm('Are you sure you want to decline the terms? You will not be able to use the service.')) {
+                window.location.href = "index.html";
+            }
+        }
+
+        function highlightTerms() {
+            const termsContent = document.querySelector('.terms-content');
+            termsContent.style.animation = 'none';
+            termsContent.offsetHeight; // Trigger reflow
+            termsContent.style.animation = 'flash 1.5s';
+            
+            // Scroll to terms
+            termsContent.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Add flash animation dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes flash {
+                0% { background-color: var(--content-bg); }
+                25% { background-color: rgba(52, 152, 219, 0.2); }
+                50% { background-color: var(--content-bg); }
+                75% { background-color: rgba(52, 152, 219, 0.1); }
+                100% { background-color: var(--content-bg); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>    
+</body>
+</html>
