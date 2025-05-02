@@ -294,30 +294,13 @@
         </div>
 
         <div class="toggle-form">
-            Don't have an account? <a id="toggle-link" onclick="toggleForm()">Sign up</a>
+            Don't have an account? <a id="toggle-link" href="signup.html">Sign up</a>
         </div>
     </div>
 
     <script>
         function exitToHomepage() {
             window.location.href = "index.html";
-        }
-
-        function toggleForm() {
-            const formTitle = document.getElementById('form-title');
-            const submitBtn = document.getElementById('submitBtn');
-            const buttonText = document.getElementById('button-text');
-            const toggleLink = document.getElementById('toggle-link');
-            
-            if (formTitle.textContent === 'Login') {
-                formTitle.textContent = 'Sign Up';
-                buttonText.textContent = 'Sign Up';
-                toggleLink.textContent = 'Login';
-            } else {
-                formTitle.textContent = 'Login';
-                buttonText.textContent = 'Login';
-                toggleLink.textContent = 'Sign up';
-            }
         }
 
         function handleSubmit(event) {
